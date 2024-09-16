@@ -1,7 +1,6 @@
 package com.example.mobile_dev.lab1
 import kotlin.math.pow
 
-
 operator fun <T> List<T>.component2(): List<T> = this.drop(1)
 
 val sum = { a: Int, b: Int -> a + b }

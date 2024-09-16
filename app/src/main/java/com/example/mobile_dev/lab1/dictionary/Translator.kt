@@ -4,15 +4,19 @@ typealias ContextMap = MutableMap<String, MutableList<String>>
 typealias Dictionary = MutableMap<String, ContextMap>
 
 class Translator {
+    private var dict: Dictionary = mutableMapOf()
+
     fun add(word: String, context: String, translate: String) {
         if (!dict.containsKey(word)) {
             dict[word] = mutableMapOf()
         }
-        val contextMap = dict[word] as ContextMap
+        val contextMap = dict[word]
+        contextMap ?: return
         if (!contextMap.containsKey(context)) {
             contextMap[context] = mutableListOf()
         }
-        val translates = contextMap[context] as MutableList<String>
+        val translates = contextMap[context]
+        translates ?: return
         translates.add(translate)
     }
 
@@ -36,6 +40,4 @@ class Translator {
     fun words(): Dictionary {
         return dict
     }
-
-    private var dict: Dictionary = mutableMapOf()
 }

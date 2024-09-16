@@ -36,11 +36,9 @@ fun defTranslatorActions(): TranslatorActions {
     )
 }
 
-val outputTranslate = { word: String, contextMap: ContextMap? ->
-    if (contextMap.isNullOrEmpty()) {
-        println("Неизвестное слово")
-    }
-    else {
+fun outputTranslate(word: String, contextMap: ContextMap?) = when {
+    contextMap.isNullOrEmpty() -> println("Неизвестное слово")
+    else -> {
         println("Перевод слова «$word»")
         contextMap.forEach { (context, translateList) ->
             println("В контексте $context: ${translateList.joinToString(", ")}")
@@ -54,7 +52,12 @@ val makeCommandHandler = { (add, remove, translate, getAllTranslates): Translato
             "add" -> add(params[0], params[1], params[2])
             "remove" -> remove(params[0], params[1], params[2])
             "translate" -> outputTranslate(params[0], translate(params[0]))
-            "print" -> getAllTranslates().forEach { (word, contextMap) -> outputTranslate(word, contextMap) }
+            "print" -> getAllTranslates().forEach { (word, contextMap) ->
+                outputTranslate(
+                    word,
+                    contextMap
+                )
+            }
         }
     }
 }
@@ -65,6 +68,7 @@ fun main() {
 
     while (true) {
         val args = readln().split(' ')
+
         val (command, params) = args
 
         if (command == "exit") {

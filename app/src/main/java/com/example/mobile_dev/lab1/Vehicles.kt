@@ -4,65 +4,63 @@ sealed interface Vehicle
 
 data object Scooter : Vehicle
 
-sealed class Wheel(d: Int)
+sealed class Wheel(val d: Int)
 
 class BikeWheel(d: Int) : Wheel(d)
 
-class Disk
+// 3 вида диска (Исправлено)
+enum class Disk {
+    CAST,
+    FORGED,
+    STAMPED,
+}
 
-class CarWheel(d: Int, brand: String, disk: Disk)
+class CarWheel(val d: Int, val brand: String, val disk: Disk)
 
-enum class FrameType {
+enum class Frame {
     TITAN,
     STEEL,
     PLASTIC,
 }
-
-class Frame(type: FrameType)
 
 enum class Fuel {
     PETROL,
     DIESEL,
 }
 
-sealed class Bike(bikeBrand: String, d: Int, frame: FrameType) : Vehicle {
-    val brand = bikeBrand
+//  определить поля внутри конструктора (Исправлено)
+sealed class Bike(val bikeBrand: String, d: Int, val frame: Frame) : Vehicle {
     val frontWheel = BikeWheel(d)
     val backWheel = BikeWheel(d)
-    val frame = Frame(frame)
 }
 
 sealed class Engine
 
-class ICE(volume: Double, fuel: Fuel): Engine()
+class ICE(val volume: Double, val fuel: Fuel): Engine()
 
 data object ElectricMotor : Engine()
 
-open class ControlSystem
+class SteeringWheel
 
-class SteeringWheel : ControlSystem()
-
-enum class AutopilotType {
+// Можно сразу type (Исправлено)
+enum class Autopilot {
     YANDEX,
     TESLA,
 }
 
-class Autopilot(type: AutopilotType) : ControlSystem()
-
 sealed class Car(
-    wheels: List<CarWheel>,
-    engine: Engine,
-    controlSystem: ControlSystem
+    val wheels: List<CarWheel>,
+    val engine: Engine,
 ) : Vehicle
 
 class ICECar(
     wheels: List<CarWheel>,
     engine: ICE,
-    controlSystem: SteeringWheel,
-) : Car(wheels, engine, controlSystem)
+    val steeringWheel: SteeringWheel,
+) : Car(wheels, engine)
 
 class ElectricCar(
     wheels: List<CarWheel>,
     engine: ElectricMotor,
-    controlSystem: Autopilot,
-) : Car(wheels, engine, controlSystem)
+    val autopilot: Autopilot,
+) : Car(wheels, engine)
