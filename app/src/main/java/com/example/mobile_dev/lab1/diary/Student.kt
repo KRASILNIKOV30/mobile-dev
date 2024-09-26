@@ -12,7 +12,6 @@ data class Student(
     val age: Age,
     val score: Score,
 ) {
-
     override fun toString(): String {
         return "${name.value} (${age.value} лет) - ${score.value} балла"
     }
