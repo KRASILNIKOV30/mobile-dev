@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="expression">Выражение</string>
+    <string name="result">Результат</string>
     <string name="number1">1</string>
     <string name="number2">2</string>
     <string name="number3">3</string>
