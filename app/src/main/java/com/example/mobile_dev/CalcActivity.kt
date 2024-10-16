@@ -1,20 +1,27 @@
 package com.example.mobile_dev
 
 import android.os.Bundle
-import android.os.Debug
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobile_dev.databinding.CalculatorBinding
 
-fun log(m: String) {
-    Log.i("CALCULATOR", m)
-}
-
 class CalcActivity : AppCompatActivity() {
+    private val calc = Calculator()
     private lateinit var binding: CalculatorBinding
     private var expression: String = ""
         set(value) {
+            field = value
             binding.expression.text = value
+            try {
+                result = calc.parse(value).toString()
+                binding.result.setTextColor(getColor(R.color.black))
+            } catch (_: ArithmeticException) {
+                result = getString(R.string.zero_dividing)
+                binding.result.setTextColor(getColor(R.color.error))
+            } catch (_: Exception) {}
+        }
+    private var result: String = ""
+        set(value) {
+            binding.result.text = value
             field = value
         }
 
@@ -23,7 +30,6 @@ class CalcActivity : AppCompatActivity() {
         binding = CalculatorBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initEventListeners()
-        log("Hello!")
     }
 
     private fun initEventListeners() {
