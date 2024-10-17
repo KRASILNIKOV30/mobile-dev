@@ -1,7 +1,5 @@
 package com.example.mobile_dev
 
-import kotlin.math.pow
-
 class Calculator {
     private var pos: Int = -1
     private var ch: Int = 0
@@ -54,22 +52,23 @@ class Calculator {
     }
 
     private fun parseFactor(): Double {
-        if (eat('+'.code)) return +parseFactor() // unary plus
-        if (eat('-'.code)) return -parseFactor() // unary minus
+        if (eat('+'.code)) {
+            return +parseFactor()
+        }
+        if (eat('-'.code)) {
+            return -parseFactor()
+        }
 
-        var x: Double
+        val x: Double
         val startPos = this.pos
-        if (eat('('.code)) { // parentheses
-            x = parseExpression()
-            if (!eat(')'.code)) throw RuntimeException("Missing ')'")
-        } else if ((ch >= '0'.code && ch <= '9'.code) || ch == '.'.code) { // numbers
-            while ((ch >= '0'.code && ch <= '9'.code) || ch == '.'.code) nextChar()
+        if ((ch >= '0'.code && ch <= '9'.code) || ch == '.'.code) {
+            while ((ch >= '0'.code && ch <= '9'.code) || ch == '.'.code) {
+                nextChar()
+            }
             x = str.substring(startPos, this.pos).toDouble()
         } else {
             throw RuntimeException("Unexpected: " + ch.toChar())
         }
-
-        if (eat('^'.code)) x = x.pow(parseFactor()) // exponentiation
 
         return x
     }
