@@ -1,6 +1,5 @@
 package com.example.mobile_dev
 
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
 import org.junit.Test
@@ -16,9 +15,13 @@ import org.junit.Assert.*
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.mobile_dev", appContext.packageName)
+    fun calcTests() {
+        val calculator = Calculator()
+        val calc = { str: String -> calculator.parse(str) }
+        val test = { left: Double, right: Double ->
+            assertEquals(left, right, .00001)
+        }
+
+        test(calc("5"), 5.0)
     }
 }
