@@ -13,13 +13,19 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         super.onCreate(savedInstanceState)
         binding = FragmentFirstBinding.bind(view)
 
-        binding.openSecondFragmentButton.setOnClickListener {
+        binding.openNextInputButton.setOnClickListener {
             val arguments = Bundle().apply {
-                putString("NAME", "Pikhail Metrovich")
+                putString("NAME", binding.nameInput.text.toString())
+                putString("SURNAME", binding.surnameInput.text.toString())
             }
 
             findNavController()
-                .navigate(R.id.action_firstFragment_to_secondFragment, arguments)
+                .navigate(R.id.action_firstFragment_to_dateFragment, arguments)
+        }
+
+        binding.openSecondFragmentButton.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_firstFragment_to_secondFragment)
         }
     }
 }

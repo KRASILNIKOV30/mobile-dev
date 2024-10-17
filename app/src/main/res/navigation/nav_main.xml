@@ -13,12 +13,44 @@
         <action
             android:id="@+id/action_firstFragment_to_secondFragment"
             app:destination="@id/secondFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_dateFragment"
+            app:destination="@id/dateFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/secondFragment"
         android:name="com.example.mobile_dev.SecondFragment"
         tools:layout="@layout/fragment_second"
-        android:label="SecondFragment" />
+        android:label="SecondFragment" >
+        <action
+            android:id="@+id/action_secondFragment_to_thirdFragment"
+            app:destination="@id/thirdFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdFragment"
+        android:name="com.example.mobile_dev.ThirdFragment"
+        tools:layout="@layout/fragment_third"
+        android:label="ThirdFragment" />
+    <fragment
+        android:id="@+id/dateFragment"
+        android:name="com.example.mobile_dev.DateFragment"
+        tools:layout="@layout/fragment_date"
+        android:label="DateFragment" >
+        <action
+            android:id="@+id/action_dateFragment_to_outputFragment"
+            app:destination="@id/outputFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/outputFragment"
+        android:name="com.example.mobile_dev.OutputFragment"
+        tools:layout="@layout/fragment_output"
+        android:label="OutputFragment" >
+        <action
+            android:id="@+id/action_outputFragment_to_firstFragment"
+            app:popUpTo="@id/firstFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/firstFragment" />
+    </fragment>
 
 </navigation>
