@@ -18,7 +18,7 @@ class MyActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.recycleView.adapter = MovieAdapter()
+        //binding.recycleView.adapter = MovieAdapter()
     }
 }
 
