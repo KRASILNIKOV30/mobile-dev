@@ -1,4 +1,4 @@
-package com.example.mobile_dev
+package com.example.mobile_dev.calculator
 
 class Calculator {
     private var pos: Int = -1

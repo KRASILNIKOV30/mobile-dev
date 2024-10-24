@@ -1,7 +1,8 @@
-package com.example.mobile_dev
+package com.example.mobile_dev.calculator
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mobile_dev.R
 import com.example.mobile_dev.databinding.CalculatorBinding
 
 class CalcActivity : AppCompatActivity() {

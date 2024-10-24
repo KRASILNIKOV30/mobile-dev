@@ -1,6 +1,7 @@
 package com.example.mobile_dev
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.mobile_dev.calculator.Calculator
 
 import org.junit.Test
 import org.junit.runner.RunWith

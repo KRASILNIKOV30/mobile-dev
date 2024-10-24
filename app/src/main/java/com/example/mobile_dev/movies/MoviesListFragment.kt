@@ -1,19 +1,29 @@
-package com.example.mobile_dev
+package com.example.mobile_dev.movies
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.mobile_dev.databinding.FragmentFirstBinding
+import com.example.mobile_dev.R
+import com.example.mobile_dev.databinding.MoviesListFragmentBinding
 
-class FirstFragment : Fragment(R.layout.fragment_first) {
-    private lateinit var binding: FragmentFirstBinding
+class FirstFragment : Fragment(R.layout.movies_list_fragment) {
+    private lateinit var binding: MoviesListFragmentBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentFirstBinding.bind(view)
+        binding = MoviesListFragmentBinding.bind(view)
+        private val adapter = MovieAdapter {
+            val arguments = Bundle().apply {
+                putString("TITLE", it.title)
+                putString("DESCRIPTION", it.description)
+            }
 
-        binding.openNextInputButton.setOnClickListener {
+            findNavController()
+
+        }
+
+        /*binding.openNextInputButton.setOnClickListener {
             val arguments = Bundle().apply {
                 putString("NAME", binding.nameInput.text.toString())
                 putString("SURNAME", binding.surnameInput.text.toString())
@@ -23,9 +33,9 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
                 .navigate(R.id.action_firstFragment_to_dateFragment, arguments)
         }
 
-        binding.openSecondFragmentButton.setOnClickListener {
+        MoviesListFragmentBinding.setOnClickListener {
             findNavController()
                 .navigate(R.id.action_firstFragment_to_secondFragment)
-        }
+        }*/
     }
 }

@@ -1,9 +1,10 @@
-package com.example.mobile_dev
+package com.example.mobile_dev.fragments
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.mobile_dev.R
 import com.example.mobile_dev.databinding.FragmentSecondBinding
 
 class SecondFragment : Fragment(R.layout.fragment_second) {
