@@ -13,7 +13,7 @@ class FirstFragment : Fragment(R.layout.movies_list_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MoviesListFragmentBinding.bind(view)
-        private val adapter = MovieAdapter {
+        val adapter = MovieAdapter {
             val arguments = Bundle().apply {
                 putString("TITLE", it.title)
                 putString("DESCRIPTION", it.description)

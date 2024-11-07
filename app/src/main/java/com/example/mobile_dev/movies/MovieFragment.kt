@@ -13,9 +13,5 @@ class SecondFragment : Fragment(R.layout.movie_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MovieFragmentBinding.bind(view)
-
-        binding.backButton.setOnClickListener {
-            findNavController().popBackStack()
-        }
     }
 }
