@@ -6,6 +6,9 @@ class Calculator {
     private var str: String = ""
 
     fun parse(expr: String): Double {
+        if (expr.isEmpty()) {
+            return 0.0
+        }
         str = expr.replace(',', '.')
         pos = -1
         ch = 0
