@@ -10,4 +10,5 @@
     <color name="actionButton">#9DFF9F</color>
     <color name="textSubdued">#A6A6A6</color>
     <color name="error">#FF0000</color>
+    <color name="cookiesBg">#2B5169</color>
 </resources>

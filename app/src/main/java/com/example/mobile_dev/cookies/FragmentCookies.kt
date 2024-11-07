@@ -23,39 +23,4 @@ class FragmentCookies : Fragment(R.layout.fragment_cookie) {
             binding.button.text = "Cookies: ${++viewModel.cookiesCount}"
         }
     }
-
-    init {
-        println("Cookies: init")
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        println("Cookies: onCreate")
-    }
-
-
-    override fun onStart() {
-        super.onStart()
-        println("Cookies: onStart")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        println("Cookies: onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        println("Cookies: onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        println("Cookies: onStop")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        println("Cookies: onDestroyView")
-    }
 }
