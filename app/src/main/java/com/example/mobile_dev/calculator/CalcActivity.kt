@@ -6,25 +6,7 @@ import com.example.mobile_dev.R
 import com.example.mobile_dev.databinding.CalculatorBinding
 
 class CalcActivity : AppCompatActivity() {
-    private val calc = Calculator()
     private lateinit var binding: CalculatorBinding
-    private var expression: String = ""
-        set(value) {
-            field = value
-            binding.expression.text = value
-            try {
-                result = calc.parse(value).toString()
-                binding.result.setTextColor(getColor(R.color.black))
-            } catch (_: ArithmeticException) {
-                result = getString(R.string.zero_dividing)
-                binding.result.setTextColor(getColor(R.color.error))
-            } catch (_: Exception) {}
-        }
-    private var result: String = ""
-        set(value) {
-            binding.result.text = value
-            field = value
-        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

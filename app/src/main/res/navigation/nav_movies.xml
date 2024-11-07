@@ -5,9 +5,20 @@
     android:id="@+id/nav_movies"
     app:startDestination="@id/mainActivity">
 
-    <activity
+    <fragment
         android:id="@+id/mainActivity"
-        android:name="com.example.mobile_dev.movies.MainActivity"
+        android:name="com.example.mobile_dev.movies.MoviesListFragment"
         tools:layout="@layout/movies_list_fragment"
-        android:label="MainActivity" />
+        android:label="MainActivity" >
+        <action
+            android:id="@+id/action_mainActivity_to_movieFragment"
+            app:destination="@id/movieFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="com.example.mobile_dev.movies.MovieFragment"
+        android:label="MovieFragment"
+        tools:layout="@layout/movie_fragment">
+    </fragment>
 </navigation>

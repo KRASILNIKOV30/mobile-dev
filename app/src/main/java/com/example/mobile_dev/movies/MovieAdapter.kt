@@ -29,7 +29,7 @@ class MovieAdapter(
         val movie = movieList[position]
 
         itemBinding.title.text = movie.title
-        itemBinding.rate.text = String.format(Locale.getDefault(), "%d", movie.rate)
+        itemBinding.rate.text = String.format(Locale.getDefault(), "%.1f", movie.rate)
         itemBinding.description.text = movie.description
         Glide
             .with(holder.itemView)
