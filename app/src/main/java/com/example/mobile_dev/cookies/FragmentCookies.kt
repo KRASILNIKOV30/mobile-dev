@@ -17,10 +17,10 @@ class FragmentCookies : Fragment(R.layout.fragment_cookie) {
         super.onCreate(savedInstanceState)
         binding = FragmentCookieBinding.bind(view)
 
-        binding.button.text = "Cookies: ${viewModel.cookiesCount}"
+        /*binding.button.text = "Cookies: ${viewModel.cookiesCount}"
 
         binding.button.setOnClickListener {
             binding.button.text = "Cookies: ${++viewModel.cookiesCount}"
-        }
+        }*/
     }
 }
