@@ -56,8 +56,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     
     val roomVersion = "2.6.1"
-    kapt(libs.androidx.room.compiler2.x.x)
-    kapt(libs.androidx.room.common)
+    // kapt(libs.androidx.room.compiler2.x.x)
+    // kapt(libs.androidx.room.common)
     implementation(libs.androidx.room.common)
 
     implementation(libs.androidx.navigation.fragment)

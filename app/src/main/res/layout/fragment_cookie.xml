@@ -8,7 +8,6 @@
 
     <include
         android:id="@+id/stats"
-        android:visibility="invisible"
         layout="@layout/fragment_cookie_stats"
         android:layout_height="0dp"
         android:layout_width="match_parent"
@@ -17,10 +16,13 @@
 
     <include
         android:id="@+id/shop"
+        android:visibility="invisible"
         layout="@layout/fragment_cookie_shop"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="@id/navPanel"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

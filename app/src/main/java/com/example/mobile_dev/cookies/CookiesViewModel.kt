@@ -1,18 +1,21 @@
 package com.example.mobile_dev.cookies
 
+import android.view.MenuItem
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.channels.BufferOverflow
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import com.example.mobile_dev.cookies.shopItemList as baseShopItemList
 
 data class State(
-    val count: Int = 0,
+    val count: Long = 0,
     val cookiesPerSecond: Int = 1,
     val time: Int = 0,
     val avgSpeed: Int = 0,
-    val shopItemList: List<ShopItem> = baseShopItemList
+    val shopItemList: List<ShopItem> = baseShopItemList,
+    val isStatsSelected: Boolean = true
 )
 
 sealed interface Event {
@@ -22,7 +25,7 @@ sealed interface Event {
 
 class CookiesViewModel: ViewModel() {
     val state = MutableStateFlow(State())
-    val event = MutableSharedFlow<Event>(onBufferOverflow = BufferOverflow.DROP_OLDEST)
+    val event = MutableSharedFlow<Event>()
     private val level = 0
     private val levelCount = 2000
 
@@ -36,28 +39,33 @@ class CookiesViewModel: ViewModel() {
     }
 
     fun onShopItemClick(shopItem: ShopItem) {
-        if (state.value.count < shopItem.price) {
-            event.tryEmit(Event.NotEnoughCookies)
-            return
-        }
+        viewModelScope.launch {
+            if (state.value.count < shopItem.price) {
+                event.emit(Event.NotEnoughCookies)
+                return@launch
+            }
 
-        state.update { prev ->
-            prev.copy(
-                shopItemList = prev.shopItemList.map {
-                    if (it.resId == shopItem.resId) {
-                        it.copy(
-                            count = it.count + 1
-                        )
+            state.update { prev ->
+                prev.copy(
+                    count = prev.count - shopItem.price,
+                    cookiesPerSecond = (prev.cookiesPerSecond + shopItem.speed).toInt(),
+                    shopItemList = prev.shopItemList.map {
+                        if (it.resId == shopItem.resId) {
+                            it.copy(
+                                count = it.count + 1,
+                                price = (it.price * 1.15).toLong(),
+                            )
+                        }
+                        else {
+                            it
+                        }
                     }
-                    else {
-                        it
-                    }
-                }
-            )
+                )
+            }
         }
     }
 
-    private fun getShopItemList(count: Int): List<ShopItem> {
+    private fun getShopItemList(count: Long): List<ShopItem> {
         return state.value.shopItemList.map {
             it.copy(disabled = count < it.price )
         }
@@ -66,6 +74,12 @@ class CookiesViewModel: ViewModel() {
     fun onCookieClick() {
         state.update { it.copy(
             count = it.count + 1
+        ) }
+    }
+
+    fun onMenuItemReselected(item: MenuItem) {
+        state.update { it.copy(
+            isStatsSelected = item.itemId == 2131231224
         ) }
     }
 }

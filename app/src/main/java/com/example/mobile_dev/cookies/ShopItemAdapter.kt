@@ -31,9 +31,16 @@ class ShopItemAdapter(
         itemBinding.title.text = shopItem.title
         itemBinding.price.text = shopItem.price.toString()
         itemBinding.image.setImageResource(shopItem.resId)
+        itemBinding.count.text = shopItem.count.toString()
 
         itemBinding.container.setOnClickListener {
             onItemClick(shopItem)
         }
+
+        itemBinding.container.alpha =
+            if (shopItem.disabled)
+                0.5F
+            else
+                1.0F
     }
 }
