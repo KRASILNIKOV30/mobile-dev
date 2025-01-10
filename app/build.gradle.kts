@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.example.mobile_dev"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.mobile_dev"
         minSdk = 28
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -54,11 +54,13 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    
+
     val roomVersion = "2.6.1"
-    // kapt(libs.androidx.room.compiler2.x.x)
-    // kapt(libs.androidx.room.common)
-    implementation(libs.androidx.room.common)
+    kapt("androidx.room:room-runtime:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)

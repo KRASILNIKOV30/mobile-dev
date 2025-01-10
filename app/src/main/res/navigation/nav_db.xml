@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/dbPinFragment"
+    android:id="@+id/nav_db">
+
+    <fragment
+        android:id="@+id/dbPinFragment"
+        android:name="com.example.mobile_dev.db.DbPinFragment"
+        android:label="DbPinFragment" >
+        <action
+            android:id="@+id/action_dbPinFragment_to_dbListFragment"
+            app:destination="@id/dbListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dbListFragment"
+        android:name="com.example.mobile_dev.db.DbListFragment"
+        android:label="DbListFragment" >
+        <action
+            android:id="@+id/action_dbListFragment_to_dbEditorFragment"
+            app:destination="@id/dbEditorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dbEditorFragment"
+        android:name="com.example.mobile_dev.db.DbEditorFragment"
+        android:label="DbEditorFragment" >
+    </fragment>
+</navigation>
